@@ -17,8 +17,11 @@ namespace BinarySearchTree
             bst.AddNode(80);
             bst.AddNode(20);
 
-            Console.WriteLine("InOder Traversal : ");
+            Console.WriteLine("InOder Traversal - Recursion : ");
             bst.InOrderTraversal(bst.Root);
+
+            Console.WriteLine("\n InOder Traversal - Iterative: ");
+            bst.InOderTraversalIterative(bst.Root);
 
         }
     }
@@ -92,6 +95,30 @@ namespace BinarySearchTree
             if (root.Right != null)
                 InOrderTraversal(root.Right);
 
+        }
+
+        public void InOderTraversalIterative(Node root)
+        {
+            Stack<Node> nodeStack = new Stack<Node>();
+
+            while (true)
+            {
+                while(root != null)
+                {
+                    nodeStack.Push(root);
+                    root = root.Left;
+                }
+
+                if (nodeStack.Count == 0)
+                    break;
+
+                var node = nodeStack.Pop();
+
+                Console.WriteLine(node.Data + "\t");
+
+                root = node.Right;
+
+            }
         }
     }
 }
