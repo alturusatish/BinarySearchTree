@@ -23,6 +23,9 @@ namespace BinarySearchTree
             Console.WriteLine("\n InOder Traversal - Iterative: ");
             bst.InOderTraversalIterative(bst.Root);
 
+            Console.WriteLine("\n Sum of Nodes :" + bst.SumOfNodes(bst.Root));
+
+
         }
     }
 
@@ -119,6 +122,14 @@ namespace BinarySearchTree
                 root = node.Right;
 
             }
+        }
+
+        public int SumOfNodes(Node root)
+        {
+            if (root == null)
+                return 0;
+            int sum = root.Data + SumOfNodes(root.Left) + SumOfNodes(root.Right);
+            return sum;
         }
     }
 }
