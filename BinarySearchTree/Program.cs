@@ -25,6 +25,8 @@ namespace BinarySearchTree
 
             Console.WriteLine("\n Sum of Nodes :" + bst.SumOfNodes(bst.Root));
 
+            Console.WriteLine("\n Height of Binary Search Tree :" + bst.HeightOfBST(bst.Root));
+
 
         }
     }
@@ -124,12 +126,32 @@ namespace BinarySearchTree
             }
         }
 
+        /// <summary>
+        /// Calculate sum of nodes in binary search tree
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
         public int SumOfNodes(Node root)
         {
             if (root == null)
                 return 0;
             int sum = root.Data + SumOfNodes(root.Left) + SumOfNodes(root.Right);
             return sum;
+        }
+
+        public int HeightOfBST(Node root)
+        {
+            if (root == null)
+                return 0;
+
+            int leftHeight = HeightOfBST(root.Left);
+            int rightHeight = HeightOfBST(root.Right);
+            if (leftHeight > rightHeight)
+            {
+                return leftHeight + 1;
+            }
+            else
+                return rightHeight + 1;
         }
     }
 }
