@@ -27,6 +27,8 @@ namespace BinarySearchTree
 
             Console.WriteLine("\n Height of Binary Search Tree :" + bst.HeightOfBST(bst.Root));
 
+            Console.WriteLine("\n Maximum element in Binary Search Tree: " + bst.MaximumElement(bst.Root));
+
 
         }
     }
@@ -139,6 +141,11 @@ namespace BinarySearchTree
             return sum;
         }
 
+        /// <summary>
+        ///  Height of BST = 1 + maximum path fromm leaf to root
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
         public int HeightOfBST(Node root)
         {
             if (root == null)
@@ -152,6 +159,32 @@ namespace BinarySearchTree
             }
             else
                 return rightHeight + 1;
+        }
+
+        /// <summary>
+        /// Find maximum element in a binary search tree
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MaximumElement(Node root)
+        {
+            int max = Int32.MinValue;
+
+            int value = 0;
+            if(root != null)
+            {
+                value = root.Data;
+                int leftMax = MaximumElement(root.Left);
+                int rightMax = MaximumElement(root.Right);
+                if (leftMax > rightMax)
+                    max = leftMax;
+                else
+                    max = rightMax;
+                if (max < value)
+                    max = value;
+            }
+
+            return max;            
         }
     }
 }
