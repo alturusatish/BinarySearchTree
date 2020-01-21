@@ -29,6 +29,9 @@ namespace BinarySearchTree
 
             Console.WriteLine("\n Maximum element in Binary Search Tree: " + bst.MaximumElement(bst.Root));
 
+            bst.NumberOfLeafNodes(bst.Root);
+            Console.WriteLine("\n Number of Leaf Nodes in Binary Search Tree: " + bst.LeafCount);
+
 
         }
     }
@@ -185,6 +188,31 @@ namespace BinarySearchTree
             }
 
             return max;            
+        }
+
+        public int LeafCount { get; set; } = 0;
+
+        /// <summary>
+        /// Calculate number of leaf nodes
+        /// </summary>
+        /// <param name="root"></param>
+       public void NumberOfLeafNodes(Node root)
+        {
+            if (root != null)
+            {
+
+                if (root.Left == null && root.Right == null)              
+                    LeafCount++;
+                else
+                {
+                    if(root.Left !=  null)
+                        NumberOfLeafNodes(root.Left);
+                    if(root.Right != null)
+                         NumberOfLeafNodes(root.Right);
+                }              
+                               
+            }             
+           
         }
     }
 }
