@@ -214,5 +214,29 @@ namespace BinarySearchTree
             }             
            
         }
+
+        /// <summary>
+        /// Check whether a given BST is SumTree or not
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public bool IsSumTree(Node root)
+        {
+            if (root == null)
+                return true;
+            if (root.Left == null && root.Right == null)
+                return true;
+
+            int leftSum = SumOfNodes(root.Left);
+            int rightSum = SumOfNodes(root.Right);
+
+            if(leftSum + rightSum == root.Data)
+            {
+                if (IsSumTree(root.Left) && IsSumTree(root.Right))
+                    return true;
+            }
+
+            return false;
+        }
     }
 }
